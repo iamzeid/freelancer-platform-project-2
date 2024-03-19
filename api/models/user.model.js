@@ -68,6 +68,10 @@ const userSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    certificate: {
+      type: String,
+      required: false,
+    },
   },
   {
     timestamps: true,
