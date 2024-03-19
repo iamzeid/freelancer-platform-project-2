@@ -3,44 +3,76 @@ import bcrypt from "bcrypt";
 
 const { Schema } = mongoose;
 
-const userSchema = new Schema({
-  username: {
-    type: String,
-    required: [true, "Username is Required"],
-    unique: true, // Ensure uniqueness of usernames
+const userSchema = new Schema(
+  {
+    username: {
+      type: String,
+      required: [true, "Username is Required"],
+      unique: true, // Ensure uniqueness of usernames
+    },
+    email: {
+      type: String,
+      required: [true, "Email is Required"],
+      unique: true, // Ensure uniqueness of emails
+    },
+    password: {
+      type: String,
+      required: [true, "Password is Required"],
+    },
+    img: {
+      type: String,
+      required: false,
+      default: "/img/anon.png",
+    },
+    countryShort: {
+      type: String,
+      required: true,
+    },
+    countryLong: {
+      type: String,
+      required: true,
+    },
+    phone: {
+      type: String,
+      required: false,
+    },
+    desc: {
+      type: String,
+      required: false,
+    },
+    title: {
+      type: String,
+      required: false,
+    },
+    rating: {
+      type: Number,
+      default: 0,
+    },
+    numReviews: {
+      type: Number,
+      default: 0,
+    },
+    education: {
+      type: String,
+      required: false,
+    },
+    experience: {
+      type: String,
+      required: false,
+    },
+    skills: {
+      type: String,
+      required: false,
+    },
+    isSeller: {
+      type: Boolean,
+      default: false,
+    },
   },
-  email: {
-    type: String,
-    required: [true, "Email is Required"],
-    unique: true, // Ensure uniqueness of emails
-  },
-  password: {
-    type: String,
-    required: [true, "Password is Required"],
-  },
-  img: {
-    type: String,
-    required: false,
-  },
-  country: {
-    type: String,
-    required: false,
-  },
-  phone: {
-    type: String,
-    required: false,
-  },
-  desc: {
-    type: String,
-    required: false,
-  },
-  isSeller: {
-    type: Boolean,
-    default: false,
+  {
+    timestamps: true,
   }
-}, {
-  timestamps: true
-});
+);
 
 userSchema.pre("save", async function (next) {
   const salt = await bcrypt.genSalt();

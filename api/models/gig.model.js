@@ -33,7 +33,7 @@ const GigSchema = new Schema(
     },
     cover: {
       type: String,
-      default: "/img/gig.jpg",
+      required: true,
     },
     images: {
       type: [String],
@@ -62,10 +62,6 @@ const GigSchema = new Schema(
     sales: {
       type: Number,
       default: 0,
-    },
-    timeZone: {
-      type: String,
-      default: false
     }
   },
   {
