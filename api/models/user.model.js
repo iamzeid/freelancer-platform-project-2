@@ -24,14 +24,6 @@ const userSchema = new Schema(
       required: false,
       default: "/img/anon.png",
     },
-    countryShort: {
-      type: String,
-      required: true,
-    },
-    countryLong: {
-      type: String,
-      required: true,
-    },
     phone: {
       type: String,
       required: false,

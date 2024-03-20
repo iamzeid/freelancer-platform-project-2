@@ -27,6 +27,7 @@ import GigDash from "./Components/GigsDash";
 import OrderDash from "./Components/OrdersDash";
 
 import TopProfile from "./Components/TopProfile";
+import EditProfile from "./Components/EditProfile";
 
 
 const queryClient = new QueryClient();
@@ -87,6 +88,11 @@ function App() {
           <Route path="/dashboard/orders" element={<OrderDash />} />
 
           <Route path='/topprofile/:freelancerId' element={<TopProfile/>}></Route>
+
+          <Route
+            path="/edit-profile"
+            element={!user ? <EditProfile /> : <Navigate to="/login" />}
+          />
 
           {/* 404 */}
           <Route path="*" element={<Error />} />

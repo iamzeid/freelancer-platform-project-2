@@ -64,13 +64,38 @@ export default function Profile() {
             className="rounded-circle mx-auto d-block"
           />
           <h2 className="text-center">{user.username}</h2>
+
+          <p style={{ whiteSpace: "pre-line" }}>
+            <strong>About: </strong>
+            <br />
+            {user.desc}
+            <br />
+            <strong>Title: </strong>
+            <br />
+            {user.title}
+            <br />
+            <strong>Education: </strong>
+            <br />
+            {user.education}
+            <br />
+            <strong>Experience: </strong>
+            <br />
+            {user.experience}
+            <br />
+            <strong>Skills: </strong>
+            <br />
+            {user.skills}
+            <br />
+          </p>
+
           <div>
             <h2>Gigs</h2>
 
 
             <div class="card-group">
               {gigs.map((gig) => (
-                <div class="card">
+                <div key={gig._id} 
+                class="card">
                   <img src="/img/gig.jpg" class="card-img-top" alt="..." />
                   <div class="card-body">
                     <h5 class="card-title">{gig.title}</h5>

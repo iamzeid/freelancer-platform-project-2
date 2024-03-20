@@ -18,7 +18,6 @@ export default function Browse() {
 
   const [searchTerm, setSearchTerm] = useState(null);
   const [searchCat, setSearchCat] = useState(null);
-  const [searchTimezone, setSearchTimezone] = useState(null);
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -52,8 +51,7 @@ export default function Browse() {
       let params = {};
       if (searchTerm && searchTerm.length > 0) params.search = searchTerm;
       if (searchCat && searchCat.length > 0) params.cat = searchCat;
-      if (searchTimezone && searchTimezone.length > 0)
-        params.timeZone = searchTimezone;
+
 
       const response = await axios.get("http://localhost:8800/api/gigs/", {
         params,
@@ -119,29 +117,6 @@ export default function Browse() {
                 placeholder="Search by category ..."
                 className="form-control me-2 "
               />
-              <select
-                className="form-select me-2"
-                onChange={(e) => setSearchTimezone(e.target.value)}
-              >
-                <option value="">Search by seller's time zone ...</option>
-                <option value="GMT-8">GMT-8</option>
-                <option value="GMT-7">GMT-7</option>
-                <option value="GMT-6">GMT-6</option>
-                <option value="GMT-5">GMT-5</option>
-                <option value="GMT-4">GMT-4</option>
-                <option value="GMT-3">GMT-3</option>
-                <option value="GMT-2">GMT-2</option>
-                <option value="GMT-1">GMT-1</option>
-                <option value="GMT+0">GMT+0</option>
-                <option value="GMT+1">GMT+1</option>
-                <option value="GMT+2">GMT+2</option>
-                <option value="GMT+3">GMT+3</option>
-                <option value="GMT+4">GMT+4</option>
-                <option value="GMT+5">GMT+5</option>
-                <option value="GMT+6">GMT+6</option>
-                <option value="GMT+7">GMT+7</option>
-                <option value="GMT+8">GMT+8</option>
-              </select>
               <button type="submit" className="btn btn-success">
                 Search
               </button>
@@ -195,10 +170,6 @@ export default function Browse() {
                           <span className="fw-bold">Delivery Time:</span>{" "}
                           {gig.deliveryTime} days
                         </p>
-                        <p>
-                          <span className="fw-bold">Seller's Time Zone:</span>{" "}
-                          {gig.timeZone}
-                        </p>
                       </div>
                       <Link
                         to={`/gig/${gig._id}`}
@@ -212,7 +183,7 @@ export default function Browse() {
               </div>
             ) : (
               <p className="text-center text-muted">
-                {searchTerm || searchCat || searchTimezone
+                {searchTerm || searchCat
                   ? "No gigs found matching your search."
                   : "Search for gigs by entering a term above."}
               </p>
